@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        <div>
+            <a href="{% url 'login' %}" style="text-decoration: none;"><button> sign up</a></button>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .card {
+        padding: 40px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 400px;
+    }
+    h1, h2, p, a, label, input, button {
+        color: #000000; /* Чорний колір для всіх текстових елементів */
+    }
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        color: #000000; /* Чорний колір для введеного тексту */
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+    button {
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .register-btn {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .register-btn:hover {
+        background-color: #45a049;
+    }
+    .login-btn {
+        background-color: #2196F3;
+        color: white;
+    }
+    .login-btn:hover {
+        background-color: #1e87db;
+    }
+    
+    .animated-btn, .animated-btn-secondary {
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .animated-btn:hover {
+        transform: scale(1.05);
+        background-color: #0056b3;
+    }
+    .animated-btn-secondary:hover {
+        transform: scale(1.05);
+        background-color: #6c757d;
+    }
+</style>
+{% endblock %}
