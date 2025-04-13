@@ -4,13 +4,17 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block head %}
-    {% endblock %}
+    {% block head %}{% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.0/lottie.min.js"></script>
     <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .logout-btn {
             padding: 6px 12px;
             font-size: 16px;
@@ -18,33 +22,153 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            background-color: #f44336; /* Червоний колір для "Вийти" */
+            background-color: #f44336;
             color: white;
-            text-decoration: none; /* Щоб текст не підкреслювався */
-            display: inline-block; /* Для коректного відображення у формі */
+            text-decoration: none;
+            display: inline-block;
         }
 
         .logout-btn:hover {
-            background-color: #d32f2f; /* Темніший червоний при наведенні */
+            background-color: #d32f2f;
         }
 
-        
+        header.navbar {
+            background-color: #f5a100;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-text {
+            font-size: 26px;
+            font-weight: bold;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text img {
+            height: 40px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .burger {
+            font-size: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: black;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: black;
+        }
+
+        /* Side panel styles */
+        .side-panel {
+            position: fixed;
+            left: -250px;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #fff;
+            border-right: 1px solid #ccc;
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .side-panel.open {
+            left: 0;
+        }
+
+        .side-panel a {
+            display: block;
+            margin-bottom: 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+        }
+
+        .overlay.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <header>
-        
+    <!-- Side panel -->
+    <div class="side-panel" id="sidePanel">
+        <a href="{% url 'home' %}">Головна</a>
+        <a href="{% url 'news' %}">Новини</a>
+        <a href="{% url 'calendar_redirect' %}">Календар</a>
+        <a href="{% url 'gallery' %}">Галерея</a>
+        <a href="{% url 'profile' %}">Профіль</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="header-left">
+            <button class="burger" onclick="toggleSidePanel()">☰</button>
+            <div class="logo-text">
+                <img src="{% static 'img/logo.png' %}" alt="Logo">
+                LinkUp
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-icon" title="Пошук">🔍</div>
+            <div class="header-icon" title="Тема">🌞</div>
+            <div class="header-icon" title="Профіль">👤</div>
+        </div>
     </header>
+
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <script>
-        const static = "{% static '' %}";
-    </script>
-    <script src="{% static 'js/index.js' %}"></script>
 
-    {% block scripts %}
-    {% endblock %}
+    <script>
+        function toggleSidePanel() {
+            const panel = document.getElementById('sidePanel');
+            const overlay = document.getElementById('overlay');
+            panel.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        document.getElementById('overlay').onclick = toggleSidePanel;
+    </script>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
