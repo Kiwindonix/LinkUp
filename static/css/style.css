@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.logout-btn {
+    padding: 6px 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background-color: #f44336;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+header.navbar {
+    background-color: #f5a100;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.logo-text {
+    font-size: 26px;
+    font-weight: bold;
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-text img {
+    height: 40px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.burger {
+    font-size: 28px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: black;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icon {
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Side panel styles */
+.side-panel {
+    position: fixed;
+    right: -220px;
+    top: 0;
+    height: 100%;
+    width: 100px;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+    transition: left 0.3s ease;
+    padding: 20px;
+    z-index: 999;
+    margin-top: 110px;
+}
+
+.side-panel.open {
+    right: 0;
+}
+
+.side-panel a {
+    display: block;
+    margin-bottom: 15px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+}
+
+.overlay.show {
+    display: block;
+}
