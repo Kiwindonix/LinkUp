@@ -8,4 +8,5 @@ urlpatterns = [
     path('profile/', lambda request: HttpResponse("Профіль (тимчасово)"), name='profile'),
     path('calendar/', lambda request: HttpResponse("Календар (тимчасово)"), name='calendar_redirect'),
     path('gallery/', lambda request: HttpResponse("Галерея (тимчасово)"), name='gallery'),
+    path('search/', views.search_contacts, name='search_contacts'),
 ]

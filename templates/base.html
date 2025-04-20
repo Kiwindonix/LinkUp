@@ -14,8 +14,7 @@
     <div class="side-panel" id="sidePanel">
         <a href="{% url 'home' %}">Головна</a>
         <a href="{% url 'news' %}">Новини</a>
-        <a href="{% url 'calendar_redirect' %}">Календар</a>
-        <a href="{% url 'gallery' %}">Галерея</a>
+        <a href="{% url 'gallery' %}">Медіа</a>
         <a href="{% url 'profile' %}">Профіль</a>
     </div>
     <div class="overlay" id="overlay"></div>
@@ -29,10 +28,13 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="header-icon" title="Пошук">🔍</div>
+            <button class="menu-btn" onclick="toggleSidePanel()">☰</button>
+            <form action="{% url 'search_contacts' %}" method="get" class="search-form">
+                <input type="text" name="q" class="search-input" placeholder="Пошук">
+            </form>
+        
             <div class="header-icon" title="Тема">🌞</div>
             <div class="header-icon" title="Профіль">👤</div>
-            <button class="burger" onclick="toggleSidePanel()">☰</button>
         </div>
     </header>
 
