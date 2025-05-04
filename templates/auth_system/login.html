@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px;">
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px; margin: 100px auto;">
         <h2 class="text-center mb-4">Login</h2>
         <form method="post" action="{% url 'login' %}">
             {% csrf_token %}
@@ -15,16 +16,9 @@
         </div>
     </div>
 </div>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+
     .card {
         padding: 40px;
         background-color: white;
@@ -34,8 +28,8 @@
     }
     h1, h2, p, a, label, input, button {
         color: #000000; /* Чорний колір для всіх текстових елементів */
-    }
-    input[type="text"], input[type="password"] {
+    }   
+    input:not(.search-input) {
         width: 100%;
         padding: 8px;
         margin-top: 5px;
@@ -84,4 +78,5 @@
         background-color: #6c757d;
     }
 </style>
+</body>
 {% endblock %}

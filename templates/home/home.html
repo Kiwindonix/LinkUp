@@ -1,8 +1,50 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
 {% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">Головна сторінка</h1>
-    <p class="text-center">Тут буде стрічка новин, пости, активність друзів і т.д.</p>
+<div class="filter-bar">
+    <form method="get">
+        <select name="sort" onchange="this.form.submit()">
+            <option value="date" {% if request.GET.sort == 'date' or not request.GET.sort %}selected{% endif %}>Сортувати за датою</option>
+            <option value="likes" {% if request.GET.sort == 'likes' %}selected{% endif %}>За лайками</option>
+            <option value="comments" {% if request.GET.sort == 'comments' %}selected{% endif %}>За коментарями</option>
+        </select>
+    </form>
+</div>
+
+<div class="feed">
+    {% for post in posts %}
+        <div class="post-card">
+            <p><strong>{{ post.author.username }}</strong></p>
+
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Post image">
+            {% elif post.video %}
+                <video controls>
+                    <source src="{{ post.video.url }}" type="video/mp4">
+                </video>
+            {% endif %}
+
+            <p>{{ post.caption }}</p>
+
+            <form action="{% url 'like_post' post.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">
+                    ❤️ {{ post.like_count }} лайків
+                </button>
+            </form>
+
+            <div class="comments">
+                <p><strong>Коментарі ({{ post.comment_count }})</strong></p>
+                {% for comment in post.comments.all %}
+                    <p><b>{{ comment.user.username }}:</b> {{ comment.text }}</p>
+                {% endfor %}
+            </div>
+
+            <form action="{% url 'comment_post' post.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="comment" placeholder="Написати коментар..." required>
+                <button type="submit">Надіслати</button>
+            </form>
+        </div>
+    {% endfor %}
 </div>
 {% endblock %}

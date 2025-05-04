@@ -16,6 +16,7 @@
         <a href="{% url 'news' %}">Новини</a>
         <a href="{% url 'gallery' %}">Медіа</a>
         <a href="{% url 'profile' %}">Профіль</a>
+        <a href="{% url 'create_post' %}">➕ Новий пост</a>
     </div>
     <div class="overlay" id="overlay"></div>
 
@@ -42,8 +43,6 @@
         {% block content %}
         {% endblock %}
     </main>
-    
-    
 
     <script>
         function toggleSidePanel() {

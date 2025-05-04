@@ -9,16 +9,15 @@ from auth_system.forms import CustomUserCreationForm
 class UserRegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = "auth_system/register.html"
-    success_url = reverse_lazy("index")
-
+    success_url = reverse_lazy("home")
 
 class UserLoginView(LoginView):
     authentication_form = AuthenticationForm
     template_name = 'auth_system/login.html'
-    success_url = reverse_lazy('task-list')
+    success_url = reverse_lazy('home')
 
 class UserLogoutView(LogoutView):
-    next_page = reverse_lazy('index')
+    next_page = reverse_lazy('home')
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             print(f"Kористувач {request.user.username} виходить")
@@ -36,5 +35,5 @@ def update_profile(request):
         if 'profile_image' in request.FILES:
             user.image = request.FILES['profile_image']
             user.save()
-        return redirect('/profile')  # Повертаємося на сторінку портфоліо
+        return redirect('profile')  # Повертаємося на сторінку портфоліо
     return render(request, 'portfolio/portfolio.html', {'user': request.user})

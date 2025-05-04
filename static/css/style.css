@@ -71,20 +71,24 @@ header.navbar {
     color: black;
 }
 
-/* Side panel styles */
+/* Базова стилізація side-panel */
 .side-panel {
     position: fixed;
-    right: -220px;
     top: 0;
+    right: -250px; /* початково прихована */
+    width: 250px;
     height: 100%;
-    width: 100px;
-    background-color: #fff;
-    border-right: 1px solid #ccc;
+    background-color: #ffffff;
+    margin-top: 60px; /* щоб не перекривати header */
     transition: left 0.3s ease;
-    padding: 20px;
-    z-index: 999;
-    margin-top: 60px;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
 }
+
 
 .side-panel.open {
     right: 0;
@@ -99,18 +103,21 @@ header.navbar {
 }
 
 .overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 998;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 900;
 }
 
 .overlay.show {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 .search-form {
@@ -144,3 +151,47 @@ header.navbar {
     margin-right: 15px;
 }
 
+.feed {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.post-card {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.post-card img, .post-card video {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.comments {
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.comments p {
+    margin: 5px 0;
+}
+
+input[name="comment"] {
+    width: 80%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.filter-bar {
+    margin: 20px;
+    text-align: right;
+}
+
+.filter-bar select {
+    padding: 5px 10px;
+    font-size: 14px;
+}
