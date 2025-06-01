@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load gettag %}
 <div class="filter-bar">
     <form method="get">
         <select name="sort" onchange="this.form.submit()">
@@ -25,12 +26,26 @@
 
             <p>{{ post.caption }}</p>
 
-            <form action="{% url 'like_post' post.id %}" method="post">
+            <form action="{% url 'like_post' post.id %}" method="post"  class="like" data-id="{{post.id}}">
                 {% csrf_token %}
                 <button type="submit">
-                    ❤️ {{ post.like_count }} лайків
+                    <svg
+                        version="1.1"
+                        height="20"
+                        width="20"
+                        viewBox="0 0 342 342"
+                        class="heart {% if liked_posts|get:post.id %}active{% endif %}"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:svg="http://www.w3.org/2000/svg">
+  <path
+     d="M 311.02786,172.99802 171.00288,313.01897 30.977882,172.99802 A 99.012625,99.009765 0 0 1 171.00288,32.977071 99.012618,99.009757 0 0 1 311.02786,172.99802 Z"
+     style="fill-opacity:1;fill-rule:nonzero;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;" />
+</svg>
+<span>{{ post.like_count }}</span>
                 </button>
             </form>
+            
+            
 
             <div class="comments">
                 <p><strong>Коментарі ({{ post.comment_count }})</strong></p>
@@ -39,7 +54,7 @@
                 {% endfor %}
             </div>
 
-            <form action="{% url 'comment_post' post.id %}" method="post">
+            <form action="{% url 'comment_post' post.id %}" method="post" >
                 {% csrf_token %}
                 <input type="text" name="comment" placeholder="Написати коментар..." required>
                 <button type="submit">Надіслати</button>
@@ -47,4 +62,5 @@
         </div>
     {% endfor %}
 </div>
+{{liked_posts|json_script:"liked-posts"}}
 {% endblock %}

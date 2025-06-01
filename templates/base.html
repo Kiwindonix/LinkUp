@@ -17,6 +17,16 @@
         <a href="{% url 'gallery' %}">Медіа</a>
         <a href="{% url 'profile' %}">Профіль</a>
         <a href="{% url 'create_post' %}">➕ Новий пост</a>
+
+        {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">🔓 Вийти</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">🔑 Увійти</a>
+            <a href="{% url 'register' %}">📝 Реєстрація</a>
+        {% endif %}
     </div>
     <div class="overlay" id="overlay"></div>
 
@@ -24,18 +34,15 @@
     <header class="navbar">
         <div class="header-left">
             <div class="logo-text">
-                <img src="{% static 'img/logo.png' %}" alt="Logo">
-                LinkUp
+                <img src="{% static 'img/image.jpg' %}">
             </div>
         </div>
         <div class="header-right">
             <button class="menu-btn" onclick="toggleSidePanel()">☰</button>
-            <form action="{% url 'search_contacts' %}" method="get" class="search-form">
+            <form action="{% url 'search_posts' %}" method="get" class="search-form">
                 <input type="text" name="q" class="search-input" placeholder="Пошук">
             </form>
         
-            <div class="header-icon" title="Тема">🌞</div>
-            <div class="header-icon" title="Профіль">👤</div>
         </div>
     </header>
 

@@ -3,7 +3,13 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.logout-btn {
+button[type="submit"]{
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+/* button[type="submit"] {
     padding: 6px 12px;
     font-size: 16px;
     border: none;
@@ -14,7 +20,8 @@ body {
     color: white;
     text-decoration: none;
     display: inline-block;
-}
+    cursor: pointer;
+}  */
 
 .logout-btn:hover {
     background-color: #d32f2f;
@@ -42,7 +49,11 @@ header.navbar {
 }
 
 .logo-text img {
-    height: 40px;
+    background: white;
+    width: 100px;
+    height: 80px;
+    border-radius: 50%;
+    border: #1e2a38 solid;
 }
 
 .header-left {
@@ -94,14 +105,13 @@ header.navbar {
     right: 0;
 }
 
-.side-panel a {
+.side-panel a, div {
     display: block;
     margin-bottom: 15px;
     color: #333;
     text-decoration: none;
     font-weight: bold;
 }
-
 .overlay {
     position: fixed;
     top: 0;
@@ -194,4 +204,61 @@ input[name="comment"] {
 .filter-bar select {
     padding: 5px 10px;
     font-size: 14px;
+}
+
+.heart * {
+    stroke: black;
+    fill: transparent;
+    transition: .2s;
+}
+
+.heart.active * {
+    stroke: red;
+    fill: red;
+    
+}
+
+.heart.active.anim {
+    animation: pulse .4s forwards;
+}
+
+@keyframes pulse{
+    0%{
+        scale: 1;
+    }
+    50%{
+        scale: 1.4;
+    }
+    100%{
+        scale: 1;
+    }
+}
+.custom-file-upload {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem; 
+}
+
+.custom-file-label {
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #89bbf1;
+}
+
+.custom-file-label:hover {
+    background-color: #0056b3; 
+} 
+#upload-button{
+    background-color: #036521;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#upload-button:hover {
+    background-color: #00d941; 
 }

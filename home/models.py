@@ -1,5 +1,5 @@
 from django.db import models
-from django.conf import settings  # Використовуємо AUTH_USER_MODEL
+from django.conf import settings 
 
 class Contact(models.Model):
     name = models.CharField(max_length=100)

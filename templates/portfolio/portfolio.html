@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<script>
+    function updateFileName(input) {
+        const label = input.previousElementSibling;
+        label.textContent = input.files[0] ? input.files[0].name : "Обери зображення";
+    }
+</script>
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-lg p-4" style="width: 600px; border-radius: 15px;">
         <h2 class="text-center mb-4">My Portfolio</h2>
@@ -7,8 +14,11 @@
             <img id="profile-picture" src="{{ user.image.url }}" class="rounded-circle mb-3" alt="Profile Picture" width="150">
             <form id="image-upload-form" method="post" enctype="multipart/form-data" class="mt-2" action="/update-profile/">
                 {% csrf_token %}
-                <input type="file" id="image-input" name="profile_image" class="form-control mb-2">
-                <button type="submit" id="upload-button" class="btn btn-primary">Change Picture</button>
+                <div class="custom-file-upload">
+                    <label for="image-input" class="custom-file-label btn btn-primary">Обери зображення</label>
+                    <input type="file" id="image-input" name="profile_image" class="form-control mb-2" style="display: none;" onchange="updateFileName(this)">>
+                </div>
+                <button type="submit" id="upload-button" class="btn btn-primary">Підтвердити</button>
             </form>
             <h4>{{ user.username }} {{ user.last_name }}</h4>
             <p class="text-muted">{{ user.profession }}</p>

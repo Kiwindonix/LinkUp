@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Результати пошуку для "{{ query }}"</h2>
+
+    {% if results %}
+        <ul>
+            {% for post in results %}
+                <li><a href="{% url 'view_post' post.id %}">{{ post.caption }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Пости не знайдено.</p>
+    {% endif %}
+{% endblock %}

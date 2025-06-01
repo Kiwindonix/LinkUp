@@ -23,7 +23,6 @@ class UserLogoutView(LogoutView):
             print(f"Kористувач {request.user.username} виходить")
         else:
             print("Користувач не аутентифікований, але намагався вийти")
-        # print("Користувач вийшов:", request.user.username)  # Вивід логування
         return super().dispatch(request, *args, **kwargs)
     
 class ProfileView(TemplateView):
@@ -35,5 +34,5 @@ def update_profile(request):
         if 'profile_image' in request.FILES:
             user.image = request.FILES['profile_image']
             user.save()
-        return redirect('profile')  # Повертаємося на сторінку портфоліо
+        return redirect('profile')  
     return render(request, 'portfolio/portfolio.html', {'user': request.user})

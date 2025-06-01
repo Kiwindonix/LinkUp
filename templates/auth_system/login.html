@@ -8,11 +8,11 @@
             {% csrf_token %}
             <div class="mb-3">
                 {{ form.as_p }}
-            </div>
-            <button type="submit">Log In</button>
+            </div> 
+            <button type="submit" class="animated-btn">Log In</button>
         </form>
         <div>
-            <a href="{% url 'login' %}" style="text-decoration: none;"><button> sign up</a></button>
+            <a href="{% url 'login' %}" style="text-decoration: none;" ><button class="animated-btn-secondary"> sign up</a></button>
         </div>
     </div>
 </div>
@@ -51,20 +51,6 @@
         cursor: pointer;
         transition: background-color 0.3s;
     }
-    .register-btn {
-        background-color: #4CAF50;
-        color: white;
-    }
-    .register-btn:hover {
-        background-color: #45a049;
-    }
-    .login-btn {
-        background-color: #2196F3;
-        color: white;
-    }
-    .login-btn:hover {
-        background-color: #1e87db;
-    }
     
     .animated-btn, .animated-btn-secondary {
         transition: transform 0.3s ease, background-color 0.3s ease;
@@ -75,7 +61,7 @@
     }
     .animated-btn-secondary:hover {
         transform: scale(1.05);
-        background-color: #6c757d;
+        background-color: #0056b3;
     }
 </style>
 </body>

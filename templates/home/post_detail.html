@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ post.caption }}</h2>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Image">
+    {% endif %}
+    {% if post.video %}
+        <video controls src="{{ post.video.url }}"></video>
+    {% endif %}
+    <p>Автор: {{ post.author.username }}</p>
+    <p>Опубліковано: {{ post.created_at }}</p>
+{% endblock %}
